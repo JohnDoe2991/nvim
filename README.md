@@ -104,4 +104,8 @@ https://github.com/stevearc/conform.nvim
 
 Autoformatter für so ziemlich alles
 
+### neo-tree.vim
 
+https://github.com/nvim-neo-tree/neo-tree.nvim
+
+Zeigt einen Dateibaum (und andere Sachen als Baum) links an
