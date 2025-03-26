@@ -109,3 +109,9 @@ Autoformatter für so ziemlich alles
 https://github.com/nvim-neo-tree/neo-tree.nvim
 
 Zeigt einen Dateibaum (und andere Sachen als Baum) links an
+
+### vgit.vim
+
+https://github.com/tanvirtin/vgit.nvim
+
+Verschiedene Git History Ansichten wie Diffs, Blames, usw.
