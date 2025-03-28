@@ -110,8 +110,8 @@ https://github.com/nvim-neo-tree/neo-tree.nvim
 
 Zeigt einen Dateibaum (und andere Sachen als Baum) links an
 
-### vgit.vim
+### neogit
 
-https://github.com/tanvirtin/vgit.nvim
+https://github.com/NeogitOrg/neogit
 
-Verschiedene Git History Ansichten wie Diffs, Blames, usw.
+Verschiedene Git Funktionen wie Graph, Diffs, Stage, Stash, usw.
