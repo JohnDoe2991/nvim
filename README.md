@@ -128,4 +128,8 @@ https://github.com/rcarriga/nvim-dap-ui
 
 GUI für nvim-dap
 
+### overseer.nvim
 
+https://github.com/stevearc/overseer.nvim
+
+Tasks Verwaltung; kann VSCode tasks.json lesen
