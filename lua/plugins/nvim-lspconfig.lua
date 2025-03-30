@@ -164,7 +164,13 @@ return {
     local servers = {
       clangd = {},
       gopls = {},
-      -- pyright = {},
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            maxLineLength = 200,
+          },
+        },
+      },
       rust_analyzer = {},
       lua_ls = {
         settings = {

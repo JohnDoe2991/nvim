@@ -115,3 +115,17 @@ Zeigt einen Dateibaum (und andere Sachen als Baum) links an
 https://github.com/NeogitOrg/neogit
 
 Verschiedene Git Funktionen wie Graph, Diffs, Stage, Stash, usw.
+
+### nvim-dap
+
+https://github.com/mfussenegger/nvim-dap
+
+Anbindung von Debuggern per Debug Adapter Protocol
+
+### nvim-dap-ui
+
+https://github.com/rcarriga/nvim-dap-ui
+
+GUI für nvim-dap
+
+
