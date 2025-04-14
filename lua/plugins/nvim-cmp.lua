@@ -26,18 +26,17 @@ return { -- Autocompletion
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
-    local has_words_before = function()
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
-    end
 
     cmp.setup {
+      preselect = cmp.PreselectMode.None,
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
-      completion = { completeopt = 'menu,menuone,noinsert' },
+      completion = {
+        completeopt = 'menu,menuone,noinsert,noselect',
+      },
       matching = {
         disallow_fuzzy_matching = true,
         disallow_fullfuzzy_matching = true,
@@ -55,7 +54,23 @@ return { -- Autocompletion
 
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<Tab>'] = cmp.mapping.confirm { select = true },
+        ['<Tab>'] = function(fallback)
+          if cmp.visible() then
+            local entries = cmp.get_entries()
+            local selected = cmp.get_selected_entry()
+            if selected or #entries == 1 then
+              -- Eintrag ausgewählt oder nur ein Eintrag vorhanden = füge ein
+              cmp.confirm { select = true }
+            else
+              -- Sonst vervollständige bis zum gemeinsamen Präfix
+              -- WICHTIG: damit die Funktion das tut, darf kein Eintrag ausgewählt sein!
+              cmp.complete_common_string()
+            end
+          else
+            fallback()
+          end
+        end,
+        -- ['<Tab>'] = cmp.mapping.confirm { select = true },
         -- ['<Tab>'] = cmp.mapping(function(fallback)
         --   if cmp.visible() then
         --     cmp.select_next_item()
