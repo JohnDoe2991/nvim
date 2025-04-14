@@ -140,4 +140,8 @@ https://github.com/rcarriga/nvim-notify
 
 Zeigt Benachrichtigungen an, z.B. wenn ein Task abgeschlossen ist
 
+### nvim-window
 
+https://github.com/yorickpeterse/nvim-window
+
+Wechseln des aktiven Fensters durch Shortcut und Auswahl
