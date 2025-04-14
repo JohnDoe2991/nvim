@@ -32,3 +32,6 @@ vim.keymap.set('n', '<C-up>', '<C-w><C-j>', { desc = 'Move focus to the lower wi
 vim.keymap.set('n', '<C-down>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<leader>wq', '<cmd>close<cr>', { desc = 'Close current window' })
 vim.keymap.set('n', '<leader>wv', '<cmd>vsplit<cr>', { desc = 'Split current window vertically' })
+
+vim.keymap.set('n', '<leader>p', '"0p', { desc = 'Paste clipboard' })
+vim.keymap.set('n', '<leader>P', '"0P', { desc = 'Paste clipboard above' })
