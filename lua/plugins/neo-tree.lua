@@ -8,7 +8,13 @@ return {
   },
   lazy = false, -- neo-tree will lazily load itself
   config = function()
-    require('neo-tree').setup {}
+    require('neo-tree').setup {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+        },
+      },
+    }
     vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle reveal<CR>')
   end,
   opts = {},
