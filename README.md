@@ -133,3 +133,11 @@ GUI für nvim-dap
 https://github.com/stevearc/overseer.nvim
 
 Tasks Verwaltung; kann VSCode tasks.json lesen
+
+### nvim-notify
+
+https://github.com/rcarriga/nvim-notify
+
+Zeigt Benachrichtigungen an, z.B. wenn ein Task abgeschlossen ist
+
+
