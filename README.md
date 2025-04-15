@@ -145,3 +145,9 @@ Zeigt Benachrichtigungen an, z.B. wenn ein Task abgeschlossen ist
 https://github.com/yorickpeterse/nvim-window
 
 Wechseln des aktiven Fensters durch Shortcut und Auswahl
+
+### neoscroll.nvim
+
+https://github.com/karb94/neoscroll.nvim
+
+Scrollt mit einer Animation um Sprünge leichter sichtbar zu machen
