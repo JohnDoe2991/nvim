@@ -151,3 +151,9 @@ Wechseln des aktiven Fensters durch Shortcut und Auswahl
 https://github.com/karb94/neoscroll.nvim
 
 Scrollt mit einer Animation um Sprünge leichter sichtbar zu machen
+
+### bufferline.nvim
+
+https://github.com/akinsho/bufferline.nvim
+
+Zeigt alle geöffneten Buffer als "Tabs" an
