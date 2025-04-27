@@ -4,6 +4,14 @@ This is my personal NeoVim config.
 
 It is based on (https://github.com/nvim-lua/kickstart.nvim)[kickstart] and will (hopefully) grow from there on.
 
+## Installation
+Clone this repo into your `$HOME/.config/` folder and install NeoVim manually.
+
+Or execute this command to do everything automatically (not supported on all platforms):
+```
+bash <(curl -sL https://raw.githubusercontent.com/JohnDoe2991/nvim/main/setup_nvim.sh)
+```
+
 ## Plugins
 
 ### fidget.nvim
