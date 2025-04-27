@@ -35,3 +35,5 @@ vim.keymap.set('n', '<leader>wv', '<cmd>vsplit<cr>', { desc = 'Split current win
 
 vim.keymap.set('n', '<leader>p', '"0p', { desc = 'Paste clipboard' })
 vim.keymap.set('n', '<leader>P', '"0P', { desc = 'Paste clipboard above' })
+
+vim.keymap.set('n', '<leader>bq', '<cmd>:bd<cr>', { desc = 'Close buffer' })
