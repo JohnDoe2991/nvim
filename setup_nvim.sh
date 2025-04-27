@@ -25,7 +25,7 @@ else
 fi
 
 # Download the Neovim tarball
-curl -sL nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz > nvim-linux64.tar.gz
+curl -sL https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz > nvim-linux-x86_64.tar.gz
 
 # Determine whether we need sudo
 SUDO=''

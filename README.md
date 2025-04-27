@@ -9,7 +9,7 @@ Clone this repo into your `$HOME/.config/` folder and install NeoVim manually.
 
 Or execute this command to do everything automatically (not supported on all platforms):
 ```
-bash <(curl -sL https://raw.githubusercontent.com/JohnDoe2991/nvim/main/setup_nvim.sh)
+bash <(curl -sL https://raw.githubusercontent.com/JohnDoe2991/nvim/master/setup_nvim.sh)
 ```
 
 ## Plugins
