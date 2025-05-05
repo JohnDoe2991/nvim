@@ -16,6 +16,13 @@ return {
     'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
+    -- Remove Global Default Keymaps: https://neovim.io/doc/user/lsp.html#_global-defaults
+    vim.keymap.del('n', 'grn')
+    vim.keymap.del({ 'n', 'v' }, 'gra')
+    vim.keymap.del('n', 'grr')
+    vim.keymap.del('n', 'gri')
+    vim.keymap.del('n', 'gO')
+
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -27,13 +34,6 @@ return {
           mode = mode or 'n'
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
-
-        -- Remove Global Default Keymaps: https://neovim.io/doc/user/lsp.html#_global-defaults
-        vim.keymap.del('n', 'grn')
-        vim.keymap.del({ 'n', 'v' }, 'gra')
-        vim.keymap.del('n', 'grr')
-        vim.keymap.del('n', 'gri')
-        vim.keymap.del('n', 'gO')
 
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
