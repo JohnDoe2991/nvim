@@ -165,3 +165,9 @@ Scrollt mit einer Animation um Sprünge leichter sichtbar zu machen
 https://github.com/akinsho/bufferline.nvim
 
 Zeigt alle geöffneten Buffer als "Tabs" an
+
+### auto-session
+
+auto-session nvim
+
+Speichert und öffnet die letzte Sitzung für einen Ordner
