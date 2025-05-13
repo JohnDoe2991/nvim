@@ -39,6 +39,8 @@ return { -- Autocompletion
           -- WICHTIG: damit die Funktion das tut, darf kein Eintrag ausgewählt sein!
           cmp.complete_common_string()
         end
+      elseif luasnip.locally_jumpable(1) then
+        luasnip.jump(1)
       else
         fallback()
       end
