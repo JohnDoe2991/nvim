@@ -17,7 +17,24 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup()
 
     -- auto generates closing brackets
-    require('mini.pairs').setup()
+    require('mini.pairs').setup {
+      mappings = {
+        -- neigh_patterns contain two characters: one matches before the pair, the other after the pair.
+        -- A pair gets only placed when both characters matches
+        -- e.g.: [^\\][^%d%w] -> no '\' before and no alpha-numerical character after
+        ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\][^%d%w]' },
+        ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\][^%d%w]' },
+        ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\][^%d%w]' },
+
+        [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\][^%d%w]' },
+        [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\][^%d%w]' },
+        ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\][^%d%w]' },
+
+        ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\][^%d%w]', register = { cr = false } },
+        ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^\\][^%d%w]', register = { cr = false } },
+        ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\][^%d%w]', register = { cr = false } },
+      },
+    }
 
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
