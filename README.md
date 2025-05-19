@@ -171,3 +171,9 @@ Zeigt alle geöffneten Buffer als "Tabs" an
 auto-session nvim
 
 Speichert und öffnet die letzte Sitzung für einen Ordner
+
+### nvim-treesitter-context
+
+https://github.com/nvim-treesitter/nvim-treesitter-context
+
+Zeigt ein "Sticky Scroll" oben im Editor an
