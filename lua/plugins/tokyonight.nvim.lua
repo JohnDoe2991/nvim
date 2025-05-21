@@ -11,6 +11,12 @@ return { -- You can easily change to a different colorscheme.
       styles = {
         comments = { italic = false }, -- Disable italics in comments
       },
+      on_highlights = function(highlights, colors)
+        -- make autocompletes more visible
+        highlights.Pmenu = { bg = '#03344E' }
+        -- make lsp infos more readable
+        highlights.NormalFloat = { bg = '#03344E' }
+      end,
     }
 
     -- Load the colorscheme here.
