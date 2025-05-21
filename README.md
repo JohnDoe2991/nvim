@@ -177,3 +177,9 @@ Speichert und öffnet die letzte Sitzung für einen Ordner
 https://github.com/nvim-treesitter/nvim-treesitter-context
 
 Zeigt ein "Sticky Scroll" oben im Editor an
+
+### indent-blankline.nvim
+
+https://github.com/lukas-reineke/indent-blankline.nvim
+
+Zeigt Indent Level grafisch und bunt an.
