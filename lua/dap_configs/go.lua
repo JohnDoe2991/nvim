@@ -1,4 +1,6 @@
-require('mason-tool-installer').setup { ensure_installed = { 'delve' } }
+-- ToDo: mason-tool-installer does not support multiple calls to setup or adding to ensure_installed
+-- see: https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/44
+-- require('mason-tool-installer').setup { ensure_installed = { 'delve' } }
 local dap = require 'dap'
 dap.adapters.delve = function(callback, config)
   if config.mode == 'remote' and config.request == 'attach' then

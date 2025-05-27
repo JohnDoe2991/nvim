@@ -3,4 +3,4 @@ require 'auto_commands'
 require 'keymaps'
 require 'lazy_nvim'
 -- Do not include the plugins module, lazy will do that autoamtically!
-require 'dap'
+require 'dap_configs'
