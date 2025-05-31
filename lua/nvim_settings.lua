@@ -36,12 +36,15 @@ vim.g.clipboard = {
     ['+'] = require('vim.ui.clipboard.osc52').copy '+',
     ['*'] = require('vim.ui.clipboard.osc52').copy '*',
   },
-  -- paste is disabled until I have a solution on Windows since no terminal supports pasting yet
-  -- paste = {
-  --   ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-  --   ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-  -- },
 }
+if string.lower(vim.env["TERM"]) == "xterm-kitty" then
+  -- kitty terminal detected, enable full OSC52 support
+  vim.g.clipboard = 'osc52'
+end
+if string.lower(vim.env["TERM"]) == "alacritty" then
+  -- alacritty terminal detected, enable full OSC52 support
+  vim.g.clipboard = 'osc52'
+end
 
 -- Enable break indent
 vim.opt.breakindent = true
