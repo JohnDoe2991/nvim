@@ -7,7 +7,7 @@ return { -- You can easily change to a different colorscheme.
   priority = 1000, -- Make sure to load this before all the other start plugins.
   config = function()
     ---@diagnostic disable-next-line: missing-fields
-    require('tokyonight').setup {
+    configStruct = {
       styles = {
         comments = { italic = false }, -- Disable italics in comments
       },
@@ -18,6 +18,13 @@ return { -- You can easily change to a different colorscheme.
         highlights.NormalFloat = { bg = '#03344E' }
       end,
     }
+    if string.lower(vim.env["TERM"]) == "alacritty" then
+      -- alacritty terminal detected, activate transparency
+      configStruct.transparent = true
+      configStruct.styles.sidebars = "transparent"
+      configStruct.styles.floats = "transparent"
+    end
+    require('tokyonight').setup(configStruct)
 
     -- Load the colorscheme here.
     -- Like many other themes, this one has different styles, and you could load
