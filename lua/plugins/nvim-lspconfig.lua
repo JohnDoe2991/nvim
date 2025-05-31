@@ -193,6 +193,7 @@ return {
       templ = {},
       superhtml = {}, -- the normal html lsp is from Microsoft and uses Typescript, which requires a up to date node.js on the system
       htmx = {},
+      jsonls = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
