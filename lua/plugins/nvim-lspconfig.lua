@@ -240,7 +240,11 @@ return {
         end
         -- dependencies seem to be here, install tool
         if not registry.is_installed(mason_name) then
-          registry.get_package(mason_name):install()
+          registry.get_package(mason_name):install({}, function(success, error)
+            if success == false then
+              require 'notify'(mason_name .. ': ' .. tostring(error), 'error')
+            end
+          end)
         end
         -- install additional tools
         for _, mason_additional in ipairs(mason_additionals) do
