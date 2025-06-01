@@ -178,8 +178,12 @@ return {
       clangd = {
         mason_dependencies = { 'unzip' },
       },
-      gopls = {},
+      gopls = {
+        mason_dependencies = { 'go' },
+      },
       pylsp = {
+        mason_name = 'python-lsp-server',
+        mason_dependencies = { 'python3' },
         config_override = {
           plugins = {
             pycodestyle = {
@@ -203,8 +207,13 @@ return {
       },
       templ = {},
       superhtml = {}, -- the normal html lsp is from Microsoft and uses Typescript, which requires a up to date node.js on the system
-      htmx = {},
-      jsonls = {},
+      htmx = {
+        mason_dependencies = { 'cargo' },
+      },
+      jsonls = {
+        mason_dependencies = { 'npm' },
+        mason_name = 'json-lsp',
+      },
     }
 
     local registry = require 'mason-registry'
