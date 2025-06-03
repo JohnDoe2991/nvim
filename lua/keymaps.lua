@@ -37,3 +37,9 @@ vim.keymap.set('n', '<leader>p', '"0p', { desc = 'Paste clipboard' })
 vim.keymap.set('n', '<leader>P', '"0P', { desc = 'Paste clipboard above' })
 
 vim.keymap.set('n', '<leader>bq', '<cmd>:bd<cr>', { desc = 'Close buffer' })
+
+-- toggle line wrap
+vim.keymap.set('n', '<leader>tw', function()
+  vim.wo.wrap = not vim.wo.wrap
+  print('Line wrap: ' .. (vim.wo.wrap and 'ON' or 'OFF'))
+end, { desc = 'Toggle line wrap' })
