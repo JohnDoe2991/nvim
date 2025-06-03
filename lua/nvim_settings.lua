@@ -94,3 +94,6 @@ vim.opt.scrolloff = 10
 vim.opt.confirm = true
 
 vim.opt.tabstop = 4
+
+-- ignore all whitespace changes in diff, use "better" diff algorithm and indent diffs
+vim.opt.diffopt = { 'internal', 'filler', 'closeoff', 'linematch:60', 'algorithm:patience', 'iwhiteall', 'indent-heuristic' }
