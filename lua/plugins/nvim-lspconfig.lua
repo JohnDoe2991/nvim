@@ -84,7 +84,7 @@ return {
 
     local map = function(keys, func, desc, mode)
       mode = mode or 'n'
-      vim.keymap.set(mode, keys, func, {})
+      vim.keymap.set(mode, keys, func, { desc = desc })
     end
 
     -- Jump to the definition of the word under your cursor.
@@ -128,7 +128,7 @@ return {
 
     -- The following code creates a keymap to toggle inlay hints in your
     map('<leader>th', function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
     end, '[T]oggle Inlay [H]ints')
 
     -- Diagnostic Config
