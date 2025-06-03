@@ -36,12 +36,16 @@ vim.g.clipboard = {
     ['+'] = require('vim.ui.clipboard.osc52').copy '+',
     ['*'] = require('vim.ui.clipboard.osc52').copy '*',
   },
+  paste = {
+    ['+'] = nil,
+    ['*'] = nil,
+  },
 }
-if string.lower(vim.env["TERM"]) == "xterm-kitty" then
+if string.lower(vim.env['TERM']) == 'xterm-kitty' then
   -- kitty terminal detected, enable full OSC52 support
   vim.g.clipboard = 'osc52'
 end
-if string.lower(vim.env["TERM"]) == "alacritty" then
+if string.lower(vim.env['TERM']) == 'alacritty' then
   -- alacritty terminal detected, enable full OSC52 support
   vim.g.clipboard = 'osc52'
 end
