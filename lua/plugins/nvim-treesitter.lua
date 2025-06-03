@@ -10,6 +10,7 @@ return { -- Highlight, edit, and navigate code
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = { 'ruby' },
+      disable = { 'csv' },
     },
     indent = { enable = false },
   },

@@ -183,3 +183,9 @@ Zeigt ein "Sticky Scroll" oben im Editor an
 https://github.com/lukas-reineke/indent-blankline.nvim
 
 Zeigt Indent Level grafisch und bunt an.
+
+### csvview.nvim
+
+https://github.com/hat0uma/csvview.nvim
+
+Zeigt CSVs schön formatiert an.
