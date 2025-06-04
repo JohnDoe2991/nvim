@@ -37,8 +37,12 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').copy '*',
   },
   paste = {
-    ['+'] = nil,
-    ['*'] = nil,
+    ['+'] = function()
+      return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
+    end,
+    ['*'] = function()
+      return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
+    end,
   },
 }
 if string.lower(vim.env['TERM']) == 'xterm-kitty' then
