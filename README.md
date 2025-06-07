@@ -189,3 +189,11 @@ Zeigt Indent Level grafisch und bunt an.
 https://github.com/hat0uma/csvview.nvim
 
 Zeigt CSVs schön formatiert an.
+
+
+### luasnip
+
+https://github.com/L3MON4D3/LuaSnip
+
+Lädt und führt Snippets aus. Sowohl VSCode als aus LSP Snippets.
+
