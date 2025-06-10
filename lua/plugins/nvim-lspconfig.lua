@@ -215,6 +215,7 @@ return {
         mason_dependencies = { 'npm' },
         mason_name = 'json-lsp',
       },
+      nixd = {},
     }
 
     local registry = require 'mason-registry'
