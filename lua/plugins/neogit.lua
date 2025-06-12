@@ -11,7 +11,6 @@ return {
   keys = {
     -- workaround for submodule support, see: https://github.com/NeogitOrg/neogit/issues/870
     {
-      'n',
       '<leader>gg',
       function()
         local file_dir = vim.fn.expand '%:h'
