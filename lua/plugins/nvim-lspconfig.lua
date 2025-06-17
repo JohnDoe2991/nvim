@@ -249,7 +249,12 @@ return {
             goto continue
           end
         end
-        -- dependencies seem to be here, install tool
+        -- dependencies seem to be here, check if tool is in mason available
+        if not registry.has_package(mason_name) then
+          add_log_line('LSP ', servername, ' skipped: not found mason package: ', mason_name)
+          goto continue
+        end
+        -- install tool
         if not registry.is_installed(mason_name) then
           registry.get_package(mason_name):install({}, function(success, error)
             if success == false then
