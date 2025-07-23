@@ -216,6 +216,7 @@ return {
         mason_name = 'json-lsp',
       },
       nixd = {},
+      qmlls = {},
     }
 
     local registry = require 'mason-registry'
