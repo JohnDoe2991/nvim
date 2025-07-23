@@ -186,9 +186,13 @@ return {
         mason_name = 'python-lsp-server',
         mason_dependencies = { 'python3' },
         config_override = {
-          plugins = {
-            pycodestyle = {
-              maxLineLength = 200,
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = {
+                  maxLineLength = 200,
+                },
+              },
             },
           },
         },
