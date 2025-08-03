@@ -197,3 +197,8 @@ https://github.com/L3MON4D3/LuaSnip
 
 Lädt und führt Snippets aus. Sowohl VSCode als aus LSP Snippets.
 
+### grug-far.nvim
+
+https://github.com/MagicDuck/grug-far.nvim
+
+globales Suchen und Ersetzen
