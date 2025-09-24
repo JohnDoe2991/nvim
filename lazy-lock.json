@@ -1,4 +1,5 @@
 {
+  "CopilotChat.nvim": { "branch": "main", "commit": "acd1e6d38d216289cd0748808da25dfc66015612" },
   "LuaSnip": { "branch": "master", "commit": "b3104910bb5ebf40492aadffae18f2528fa757d9" },
   "auto-session": { "branch": "main", "commit": "af683b2cb176aa8e0cddb3cdc2dada21f09bb09b" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },

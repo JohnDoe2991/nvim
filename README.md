@@ -202,3 +202,10 @@ Lädt und führt Snippets aus. Sowohl VSCode als aus LSP Snippets.
 https://github.com/MagicDuck/grug-far.nvim
 
 globales Suchen und Ersetzen
+
+### CopilotChat.nvim
+
+https://github.com/CopilotC-Nvim/CopilotChat.nvim
+
+Copilot Chat
+
