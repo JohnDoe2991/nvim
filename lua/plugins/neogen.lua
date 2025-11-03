@@ -2,6 +2,6 @@ return {
   'danymat/neogen',
   config=true,
   keys={
-    { '<leader>cd', '<cmd>Negen<cr>', desc='generate doc string' },
+    { '<leader>cd', '<cmd>Neogen<cr>', desc='generate doc string' },
   }
 }
