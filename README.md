@@ -209,3 +209,9 @@ https://github.com/CopilotC-Nvim/CopilotChat.nvim
 
 Copilot Chat
 
+### Neogen
+
+https://github.com/danymat/neogen
+
+Generiert Doku String, z.B. Doxygen
+
