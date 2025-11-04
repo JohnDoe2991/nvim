@@ -215,3 +215,9 @@ https://github.com/danymat/neogen
 
 Generiert Doku String, z.B. Doxygen
 
+### CamelCaseMotion
+
+https://github.com/bkad/CamelCaseMotion
+
+Erlaubt Motions und Selections mit CamelCase
+

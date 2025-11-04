@@ -1,4 +1,5 @@
 {
+  "CamelCaseMotion": { "branch": "master", "commit": "e69b0024f8f63db10c5d0df26d4920760755d454" },
   "CopilotChat.nvim": { "branch": "main", "commit": "acd1e6d38d216289cd0748808da25dfc66015612" },
   "LuaSnip": { "branch": "master", "commit": "faf3c94a44508cec1b961406d36cc65113ff3b98" },
   "auto-session": { "branch": "main", "commit": "00334ee24b9a05001ad50221c8daffbeedaa0842" },
