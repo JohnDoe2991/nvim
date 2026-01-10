@@ -17,12 +17,14 @@ end
 
 local major, minor = get_gdb_version()
 if major and major >= 14 then
+  -- gdb is installed and version is 14 or higher; use native dap support
   dap.adapters.cppdbg = {
     type = 'executable',
     command = 'gdb',
     args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
   }
-else
+elseif major then
+  -- gdb is installed, but version does not support gdb
   local download_path = '/tmp/vscode-cpptools.zip'
   local extract_dir = '/tmp/vscode-cpptools'
   local bin_path = extract_dir .. '/extension/debugAdapters/bin/OpenDebugAD7'
@@ -39,6 +41,8 @@ else
     type = 'executable',
     command = bin_path,
   }
+else
+  -- gdb is not installed, do nothing
 end
 dap.configurations.c = {
   {
