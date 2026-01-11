@@ -182,21 +182,10 @@ return {
       gopls = {
         mason_dependencies = { 'go' },
       },
-      pylsp = {
-        mason_name = 'python-lsp-server',
-        mason_dependencies = { 'python3' },
-        config_override = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = {
-                  maxLineLength = 200,
-                },
-              },
-            },
-          },
-        },
+      ty = {
+        mason_dependencies = { 'uv' },
       },
+      ruff = {},
       rust_analyzer = {},
       lua_ls = {
         mason_additionals = { { 'stylua', 'stylua' } },
