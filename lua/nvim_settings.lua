@@ -23,13 +23,13 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+-- dont use special registers like "*" and "+" automatically
+-- instead we remap "y" and "<leader>p" to to store its values in "+"
+-- this way we prevent all other commands like "c" or "x" to constantly override the clipboard
+vim.opt.clipboard = ''
+
 -- use osc52 to command terminal emulator to store clipboard in OS, not NVim directly
+-- this only supports copying, not pasting since pasting can be a security issue with OSC52
 vim.g.clipboard = {
   name = 'OSC 52',
   copy = {
