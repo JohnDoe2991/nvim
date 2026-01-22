@@ -23,36 +23,40 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
--- dont use special registers like "*" and "+" automatically
--- instead we remap "y" and "<leader>p" to to store its values in "+"
--- this way we prevent all other commands like "c" or "x" to constantly override the clipboard
-vim.opt.clipboard = ''
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    -- first we check if a terminal can be detected which uses full OSC52 support
+    local isKitty = string.lower(vim.env['TERM'] or '') == 'xterm-kitty'
+    local isAlacritty = string.lower(vim.env['TERM'] or '') == 'alacritty'
+    local isWsltty = string.lower(vim.env['HOSTTERM'] or '') == 'mintty'
+    local activateOSC52 = false
+    if isKitty or isAlacritty or isWsltty then
+      activateOSC52 = true
+    end
+    if not activateOSC52 and vim.o.compatible == false then
+      local answer = vim.fn.input 'OSC 52 support not detected. Enable OSC52 clipboard support anyway? (y/n): '
+      if string.lower(answer) == 'y' then
+        activateOSC52 = true
+      end
+    end
+    if activateOSC52 then
+      -- dont use special registers like "*" and "+" automatically
+      -- instead we remap "y" and "<leader>p" to to store its values in "+"
+      -- this way we prevent all other commands like "c" or "x" to constantly override the clipboard
+      vim.opt.clipboard = ''
 
--- use osc52 to command terminal emulator to store clipboard in OS, not NVim directly
--- this only supports copying, not pasting since pasting can be a security issue with OSC52
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-  },
-  paste = {
-    ['+'] = function()
-      return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
-    end,
-    ['*'] = function()
-      return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
-    end,
-  },
-}
-if string.lower(vim.env['TERM']) == 'xterm-kitty' then
-  -- kitty terminal detected, enable full OSC52 support
-  vim.g.clipboard = 'osc52'
-end
-if string.lower(vim.env['TERM']) == 'alacritty' then
-  -- alacritty terminal detected, enable full OSC52 support
-  vim.g.clipboard = 'osc52'
-end
+      vim.g.clipboard = 'osc52'
+
+      vim.keymap.set({ 'n', 'v' }, 'y', '"+y', { desc = 'Copy to clipboard', noremap = true })
+      vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste clipboard' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste clipboard above' })
+    else
+      vim.opt.clipboard = 'unnamedplus'
+      vim.keymap.set({ 'n', 'v' }, '<leader>p', '"0p', { desc = 'Paste last yank' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>P', '"0P', { desc = 'Paste last yank above' })
+    end
+  end,
+})
 
 -- Enable break indent
 vim.opt.breakindent = true
