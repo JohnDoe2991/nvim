@@ -7,7 +7,7 @@ local function get_gdb_version()
   end
   local result = handle:read '*a'
   handle:close()
-  local version = result:match 'GNU gdb%s+%d+%.%d+'
+  local version = result:match 'GNU gdb.+%d+%.%d+'
   if version then
     local major, minor = version:match '(%d+)%.(%d+)'
     return tonumber(major), tonumber(minor)
