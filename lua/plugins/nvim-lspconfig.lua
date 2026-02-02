@@ -210,6 +210,19 @@ return {
       },
       nixd = {},
       qmlls = {},
+      lemminx = {
+        config_override = {
+          settings = {
+            xml = {
+              format = {
+                -- for more options see: https://github.com/redhat-developer/vscode-xml/blob/main/docs/Formatting.md
+                enabled = true,
+                maxLineWidth = 0,
+              },
+            },
+          },
+        },
+      },
     }
 
     local registry = require 'mason-registry'
