@@ -23,7 +23,7 @@ return {
         },
       },
     }
-    vim.keymap.set('n', '<leader>e', '<Cmd>Neotree focus right reveal<CR>')
+    vim.keymap.set('n', '<leader>e', '<Cmd>Neotree focus right reveal toggle<CR>')
   end,
   opts = {},
 }
