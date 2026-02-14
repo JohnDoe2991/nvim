@@ -29,8 +29,10 @@ vim.api.nvim_create_autocmd('VimEnter', {
     local isKitty = string.lower(vim.env['TERM'] or '') == 'xterm-kitty'
     local isAlacritty = string.lower(vim.env['TERM'] or '') == 'alacritty'
     local isWsltty = string.lower(vim.env['HOSTTERM'] or '') == 'mintty'
+    -- windows terminal does not set HOSTTERM automatically, see https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks#environment-variables-per-profile and set for your profile
+    local isWindowsTerminal = string.lower(vim.env['HOSTTERM'] or '') == 'WindowsTerminal'
     local activateOSC52 = false
-    if isKitty or isAlacritty or isWsltty then
+    if isKitty or isAlacritty or isWsltty or isWindowsTerminal then
       activateOSC52 = true
     end
     if not activateOSC52 and vim.o.compatible == false then
