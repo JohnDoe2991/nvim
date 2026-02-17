@@ -49,7 +49,13 @@ vim.api.nvim_create_autocmd('VimEnter', {
 
       vim.g.clipboard = 'osc52'
 
-      vim.keymap.set({ 'n', 'v' }, 'y', '"+y', { desc = 'Copy to clipboard', noremap = true })
+      vim.keymap.set('n', 'y', function()
+        local reg = vim.v.register
+        if reg == '"' then
+          reg = '+'
+        end
+        return '"' .. reg .. 'y'
+      end, { expr = true, silent = true })
       vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste clipboard' })
       vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste clipboard above' })
     else
