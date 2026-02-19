@@ -56,6 +56,17 @@ vim.api.nvim_create_autocmd('VimEnter', {
 
       vim.g.clipboard = 'osc52'
 
+      -- we copy the clipboard content to the unnamed register as soon as we get focus back
+      -- that way we get external copied content directly to 'p' (paste) without thinking about it
+      vim.api.nvim_create_autocmd('FocusGained', {
+        callback = function()
+          local clipboard = vim.fn.getreg '+'
+          if clipboard ~= '' then
+            vim.fn.setreg('"', clipboard)
+          end
+        end,
+      })
+
       vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste clipboard' })
       vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste clipboard above' })
     else
