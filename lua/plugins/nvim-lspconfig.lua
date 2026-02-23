@@ -182,6 +182,10 @@ return {
       gopls = {
         mason_dependencies = { 'go' },
       },
+      golangci_lint_ls = {
+        mason_dependencies = { 'go' },
+        mason_additionals = { { 'golangci-lint' } },
+      },
       ty = {
         mason_dependencies = { 'uv' },
       },
