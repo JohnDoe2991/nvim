@@ -227,6 +227,9 @@ return {
           },
         },
       },
+      neocmake = {
+        mason_name = 'neocmakelsp',
+      },
     }
 
     local registry = require 'mason-registry'
