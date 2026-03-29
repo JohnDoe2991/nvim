@@ -9,6 +9,10 @@ return {
 
     provider = 'openai',
 
+    behaviour = {
+      auto_approve_tool_permissions = { 'read_file' },
+    },
+
     providers = {
       openai = {
         model = 'gpt-5.2',
