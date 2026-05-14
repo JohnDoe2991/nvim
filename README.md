@@ -203,21 +203,6 @@ https://github.com/MagicDuck/grug-far.nvim
 
 globales Suchen und Ersetzen
 
-### CopilotChat.nvim
-
-https://github.com/CopilotC-Nvim/CopilotChat.nvim
-
-Copilot Chat
-
-### avante.nvim
-
-https://github.com/yetone/avante.nvim
-
-KI-Assistant im Editor (Chat / Code-Änderungen). In dieser Konfiguration:
-- Provider: OpenAI
-- Model: `gpt-5.2`
-- Instructions: `avante.md`
-
 ### Neogen
 
 https://github.com/danymat/neogen
