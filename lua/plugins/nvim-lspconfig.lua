@@ -170,6 +170,7 @@ return {
 
     -- this list contains all lsp servers which get enabled
     -- each lsp has a structure with several fields:
+    -- cmd_name: the binary name to start; the lsp config may contain just a function to start it, so we have to provide a binary name for checks
     -- mason_name: the binary name within mason to install it; if no name is provided, then the first argument in cmd from the lsp config will be used
     -- mason_dependencies: a list of tools which have to present in order to install it with mason; if these are not present, the lsp will not be enabled
     -- mason_additionals: a list of tools which need to be installed for the lsp to work, the first argument is the mason name, the second the cmd name
@@ -209,6 +210,7 @@ return {
         mason_dependencies = { 'cargo' },
       },
       jsonls = {
+        cmd_name = 'vscode-json-language-server',
         mason_dependencies = { 'npm' },
         mason_name = 'json-lsp',
       },
@@ -238,7 +240,7 @@ return {
     end
     for servername, config in pairs(servers) do
       local lsp_config = vim.lsp.config[servername]
-      local cmd_name = lsp_config.cmd[1]
+      local cmd_name = config.cmd_name or lsp_config.cmd[1]
       local mason_name = config.mason_name or cmd_name
       local mason_dependencies = config.mason_dependencies or {}
       local mason_additionals = config.mason_additionals or {}
