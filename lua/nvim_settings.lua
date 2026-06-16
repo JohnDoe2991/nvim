@@ -30,22 +30,29 @@ vim.api.nvim_create_autocmd('VimEnter', {
     local isAlacritty = string.lower(vim.env['TERM'] or '') == 'alacritty'
     local isWsltty = string.lower(vim.env['HOSTTERM'] or '') == 'mintty'
     -- windows terminal does not set HOSTTERM automatically, see https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks#environment-variables-per-profile and set for your profile
-    local isWindowsTerminal = string.lower(vim.env['HOSTTERM'] or '') == 'windowsterminal'
-    local activateOSC52 = false
-    if isKitty or isAlacritty or isWsltty or isWindowsTerminal then
-      activateOSC52 = true
+    local isWindowsTerminalWithOsc52 = string.lower(vim.env['HOSTTERM'] or '') == 'windowsterminal'
+    local isWindowsTerminal = string.lower(vim.env['HOSTTERM'] or '') == 'windowsterminaldefault'
+    local activateOSC52Paste = false
+    local activateOSC52Copy = false
+    if isKitty or isAlacritty or isWsltty or isWindowsTerminalWithOsc52 then
+      activateOSC52Paste = true
+      activateOSC52Copy = true
     end
-    if not activateOSC52 and vim.o.compatible == false then
-      local answer = vim.fn.input 'OSC 52 support not detected. Enable OSC52 clipboard support anyway? (y/n): '
+    if isWindowsTerminal then
+      activateOSC52Copy = true
+    end
+    if not (activateOSC52Paste or activateOSC52Copy) and vim.o.compatible == false then
+      local answer = vim.fn.input 'OSC 52 support not detected. Enable OSC52 clipboard copy support anyway? (y/n): '
       if string.lower(answer) == 'y' then
-        activateOSC52 = true
+        activateOSC52Copy = true
       end
     end
-    if activateOSC52 then
+    if activateOSC52Copy then
       -- dont use special registers like "*" and "+" automatically
       -- instead we remap "y" and "<leader>p" to to store its values in "+"
       -- this way we prevent all other commands like "c" or "x" to constantly override the clipboard
       vim.opt.clipboard = ''
+      vim.g.clipboard = 'osc52'
       vim.keymap.set({ 'n', 'x' }, 'y', function()
         local reg = vim.v.register
         if reg == '"' then
@@ -53,11 +60,12 @@ vim.api.nvim_create_autocmd('VimEnter', {
         end
         return '"' .. reg .. 'y'
       end, { expr = true, silent = true })
-
-      vim.g.clipboard = 'osc52'
-
+    end
+    if activateOSC52Paste then
       -- we copy the clipboard content to the unnamed register as soon as we get focus back
       -- that way we get external copied content directly to 'p' (paste) without thinking about it
+      vim.opt.clipboard = ''
+      vim.g.clipboard = 'osc52'
       vim.api.nvim_create_autocmd('FocusGained', {
         callback = function()
           local clipboard = vim.fn.getreg '+'
@@ -70,9 +78,12 @@ vim.api.nvim_create_autocmd('VimEnter', {
       vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste clipboard' })
       vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste clipboard above' })
     else
-      vim.opt.clipboard = 'unnamedplus'
       vim.keymap.set({ 'n', 'v' }, '<leader>p', '"0p', { desc = 'Paste last yank' })
       vim.keymap.set({ 'n', 'v' }, '<leader>P', '"0P', { desc = 'Paste last yank above' })
+    end
+    if not (activateOSC52Copy or activateOSC52Paste) then
+      -- default behavior
+      vim.opt.clipboard = 'unnamedplus'
     end
   end,
 })
