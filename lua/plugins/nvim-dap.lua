@@ -1,9 +1,5 @@
 return {
   'mfussenegger/nvim-dap',
-  dependencies = {
-    { 'williamboman/mason.nvim', opts = {} }, -- install dependencies in dap configs
-    'WhoIsSethDaniel/mason-tool-installer.nvim', -- install dependencies in dap configs
-  },
   lazy = true,
   -- source: https://github.com/stevearc/overseer.nvim/blob/271760514c2570dc544c45d3ca9754dcf2785a41/lua/overseer/util.lua#L72-L102
   config = function()
