@@ -16,6 +16,70 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+local function find_copilot_terminal_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == 'terminal' then
+      local name = vim.api.nvim_buf_get_name(buf)
+      if name:match 'copilot_start' then
+        return buf
+      end
+    end
+  end
+  return nil
+end
+
+local function open_or_focus_copilot_terminal()
+  local buf = find_copilot_terminal_buf()
+  if buf then
+    vim.api.nvim_set_current_buf(buf)
+    vim.cmd 'startinsert'
+    return
+  end
+
+  vim.cmd 'terminal copilot_start'
+  vim.cmd 'startinsert'
+end
+
+local function flash_linewise_yank(start_line, end_line)
+  local ns = vim.api.nvim_create_namespace 'custom-copy-yank-highlight'
+  for line = start_line - 1, end_line - 1 do
+    vim.api.nvim_buf_add_highlight(0, ns, 'IncSearch', line, 0, -1)
+  end
+  vim.defer_fn(function()
+    pcall(vim.api.nvim_buf_clear_namespace, 0, ns, 0, -1)
+  end, 160)
+end
+
+local function clean_linewise_selection_to_clipboard()
+  local mode = vim.fn.mode()
+  local start_line
+  local end_line
+
+  if mode == 'v' or mode == 'V' or mode == '\22' then
+    start_line = vim.fn.getpos 'v'[2]
+    end_line = vim.fn.getpos '.'[2]
+  else
+    start_line = vim.fn.getpos "'<"[2]
+    end_line = vim.fn.getpos "'>"[2]
+  end
+
+  if start_line == 0 or end_line == 0 then
+    return
+  end
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+  for i, line in ipairs(lines) do
+    lines[i] = line:gsub('%s*┃%s*$', '')
+  end
+  local cleaned = table.concat(lines, '\n') .. '\n'
+  vim.fn.setreg('+', cleaned, 'V')
+  vim.fn.setreg('"', cleaned, 'V')
+  flash_linewise_yank(start_line, end_line)
+end
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -34,6 +98,10 @@ vim.keymap.set('n', '<leader>wq', '<cmd>close<cr>', { desc = 'Close current wind
 vim.keymap.set('n', '<leader>wv', '<cmd>vsplit<cr>', { desc = 'Split current window vertically' })
 
 vim.keymap.set('n', '<leader>bq', '<cmd>:bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set({ 'n', 't' }, '<leader>cp', open_or_focus_copilot_terminal, { desc = 'Open or focus Copilot CLI terminal' })
+vim.keymap.set('x', '<leader>cy', clean_linewise_selection_to_clipboard, { desc = 'Copy visual selection without TUI scrollbar' })
+vim.api.nvim_create_user_command('Copilot', open_or_focus_copilot_terminal, { desc = 'Open or focus Copilot CLI terminal' })
+vim.cmd 'cnoreabbrev <expr> copilot getcmdtype() == ":" && getcmdline() == "copilot" ? "Copilot" : "copilot"'
 
 -- toggle line wrap
 vim.keymap.set('n', '<leader>tw', function()
