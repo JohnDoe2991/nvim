@@ -109,12 +109,16 @@ vim.keymap.set('n', '<leader>tw', function()
   print('Line wrap: ' .. (vim.wo.wrap and 'ON' or 'OFF'))
 end, { desc = 'Toggle line wrap' })
 
--- paste and load macros as base64 encoded string
-local macro_b64 = require 'macro_save_load'
+-- paste and load macros as readable text
+local macro_serialization = require 'macro_serialization'
 vim.keymap.set('n', '<leader>mp', function()
-  macro_b64.insert_reg_as_base64()
-end, { desc = 'Insert selected macro register as base64' })
+  macro_serialization.insert_reg_as_readable()
+end, { desc = 'Insert selected macro register as readable text' })
 
 vim.keymap.set('v', '<leader>my', function()
-  macro_b64.load_reg_from_visual_base64()
-end, { desc = 'Load selected macro register from base64 selection' })
+  macro_serialization.load_reg_from_visual_readable()
+end, { desc = 'Load selected macro register from readable selection' })
+
+vim.keymap.set('v', '<leader>mo', function()
+  macro_serialization.load_reg_from_visual_base64()
+end, { desc = 'Load selected macro register from old base64 selection' })
