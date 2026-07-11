@@ -98,7 +98,7 @@ vim.keymap.set('n', '<leader>wq', '<cmd>close<cr>', { desc = 'Close current wind
 vim.keymap.set('n', '<leader>wv', '<cmd>vsplit<cr>', { desc = 'Split current window vertically' })
 
 vim.keymap.set('n', '<leader>bq', '<cmd>:bd<cr>', { desc = 'Close buffer' })
-vim.keymap.set({ 'n', 't' }, '<leader>cp', open_or_focus_copilot_terminal, { desc = 'Open or focus Copilot CLI terminal' })
+vim.keymap.set('n', '<leader>cp', open_or_focus_copilot_terminal, { desc = 'Open or focus Copilot CLI terminal' })
 vim.keymap.set('x', '<leader>cy', clean_linewise_selection_to_clipboard, { desc = 'Copy visual selection without TUI scrollbar' })
 vim.api.nvim_create_user_command('Copilot', open_or_focus_copilot_terminal, { desc = 'Open or focus Copilot CLI terminal' })
 vim.cmd 'cnoreabbrev <expr> copilot getcmdtype() == ":" && getcmdline() == "copilot" ? "Copilot" : "copilot"'
