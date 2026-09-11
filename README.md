@@ -12,6 +12,12 @@ Or execute this command to do everything automatically (not supported on all pla
 bash <(curl -sL https://raw.githubusercontent.com/JohnDoe2991/nvim/master/setup_nvim.sh)
 ```
 
+## Shell / Terminal
+
+Neovim selects the first available shell from this priority list:
+`zsh` -> `bash` -> `sh`.
+On Windows it uses `pwsh` -> `powershell` -> `cmd`.
+
 ## Plugins
 
 ### fidget.nvim

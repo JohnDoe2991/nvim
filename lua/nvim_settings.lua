@@ -5,6 +5,25 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- Prefer the most capable available shell, while keeping the config portable.
+local shell_priority = vim.fn.has 'win32' == 1 and {
+  'pwsh',
+  'powershell',
+  'cmd',
+} or {
+  'zsh',
+  'bash',
+  'sh',
+}
+
+for _, shell in ipairs(shell_priority) do
+  local shell_path = vim.fn.exepath(shell)
+  if shell_path ~= '' then
+    vim.opt.shell = shell_path
+    break
+  end
+end
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
