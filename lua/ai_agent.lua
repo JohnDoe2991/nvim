@@ -5,21 +5,38 @@ local agents = {
   { command = 'codex', name = 'Codex' },
 }
 
-local function find_terminal_buf(command)
+local function is_agent_buffer(buf, command)
+  local name = vim.api.nvim_buf_get_name(buf)
+  return name:match(':' .. vim.pesc(command) .. '$') ~= nil
+end
+
+local function find_agent_buf(command)
+  local unloaded_match
+
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == 'terminal' then
-      local name = vim.api.nvim_buf_get_name(buf)
-      if name:match(vim.pesc(command)) then
+    if vim.api.nvim_buf_is_valid(buf) and is_agent_buffer(buf, command) then
+      if vim.bo[buf].buftype == 'terminal' then
         return buf
       end
+
+      -- AutoSession may restore terminal buffers as unloaded `term://` buffers.
+      unloaded_match = unloaded_match or buf
     end
   end
+
+  return unloaded_match
 end
 
 local function open_or_focus_agent(agent)
-  local buf = find_terminal_buf(agent.command)
+  local buf = find_agent_buf(agent.command)
   if buf then
-    vim.api.nvim_set_current_buf(buf)
+    if vim.bo[buf].buftype ~= 'terminal' then
+      local name = vim.api.nvim_buf_get_name(buf)
+      vim.cmd('edit ' .. vim.fn.fnameescape(name))
+    else
+      vim.api.nvim_set_current_buf(buf)
+    end
+
     vim.cmd 'startinsert'
     return
   end
