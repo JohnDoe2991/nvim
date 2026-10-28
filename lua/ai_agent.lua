@@ -1,6 +1,7 @@
 local M = {}
 
 local agents = {
+  { command = 'pi', name = 'Pi' },
   { command = 'copilot_start', name = 'Copilot' },
   { command = 'codex', name = 'Codex' },
 }
